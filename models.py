@@ -1,7 +1,7 @@
 from marshmallow import fields, Schema, validates_schema, ValidationError
 from typing import Any
 
-VALID_CVD = (
+VALID_CMD_PARAMETERS: tuple = (
     "filter",
     "map",
     "unique",
@@ -20,8 +20,8 @@ class Request(Schema):
 
     @validates_schema()
     def validate_cmd(self, values: dict, *args: Any, **kwargs: Any) -> dict:
-        if values["cmd1"] not in VALID_CVD:
+        if values["cmd1"] not in VALID_CMD_PARAMETERS:
             raise ValidationError("cmd1: недопустимый параметр")
-        if values["cmd2"] not in VALID_CVD:
+        if values["cmd2"] not in VALID_CMD_PARAMETERS:
             raise ValidationError("cmd2: недопустимый параметр")
         return values
